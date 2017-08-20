@@ -10,7 +10,7 @@ Powered by: http://hilios.github.io/jQuery.countdown/
 
 ## Screenshots
 ### Block
-![screenshot 19](https://user-images.githubusercontent.com/6638367/29490911-077c713e-8554-11e7-8fbb-efde686700b8.png)
+![screenshot 002](https://user-images.githubusercontent.com/6638367/29498017-340472d0-85fc-11e7-900d-f821aba6d4d2.png)
 ### Settings page
 * Title;
 * Date and time;
@@ -18,4 +18,4 @@ Powered by: http://hilios.github.io/jQuery.countdown/
 * URL;
 * Custom css.
 
-![screenshot 20](https://user-images.githubusercontent.com/6638367/29490912-0794362a-8554-11e7-8b8a-d4b15818d603.png)
+![screenshot 001](https://user-images.githubusercontent.com/6638367/29498016-3369b1a0-85fc-11e7-9d2f-b77e39d438fa.png)
