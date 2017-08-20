@@ -1,0 +1,14 @@
+.countdown-daystext {
+    font-size: 0.9em;
+}
+
+.countdown-days,
+.countdown-hours,
+.countdown-minutes,
+.countdown-seconds {
+    font-size: 1.2em;
+}
+
+.countdown-devider {
+    padding: 0 2px;
+}
