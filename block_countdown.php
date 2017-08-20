@@ -1,4 +1,19 @@
 <?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
 /**
  * Countdown plugin
  * http://docs.moodle.org/dev/
@@ -6,9 +21,13 @@
  * @package    block_countdown
  * @copyright  Yevhen Matasar <matasar.ei@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */ 
+ */
+
+//It must be included from a Moodle page.
+defined('MOODLE_INTERNAL') || die('Direct access to this script is forbidden.');
+
 class block_countdown extends block_base {
-    
+
     /**
      * Init function
      * @return void
@@ -16,7 +35,7 @@ class block_countdown extends block_base {
     function init() {
         $this->title = get_string('pluginname','block_countdown');
     }
-    
+
     /**
      * Returns content of the block
      * @return string Content of the block
@@ -36,7 +55,7 @@ class block_countdown extends block_base {
         if ($this->config->title) {
             $this->title = $this->config->title;
         }
-        
+
         $this->page->requires->jquery();
         $this->page->requires->js("/blocks/countdown/js/jquery.countdown.js");
         $this->page->requires->js("/blocks/countdown/js/start.js");
@@ -47,13 +66,13 @@ class block_countdown extends block_base {
             $params['target'] = $this->config->urltarget;
             $tag = 'a';
         }
-        
+
         if ($this->config->until > time()) {
             $params['class'] = 'block_countdown_timer';
             $params['data-daystext'] = get_string('daystext', 'block_countdown');
             $params['data-datetime'] = date('Y/m/d H:m:i', $this->config->until);
             $this->content->text = html_writer::tag($tag, '', $params);
-        } else {    
+        } else {
             if ($this->config->ended_text) {
                 $endedtext = $this->config->ended_text;
             } else {
@@ -64,5 +83,5 @@ class block_countdown extends block_base {
         }
         return $this->content;
     }
-    
+
 }
