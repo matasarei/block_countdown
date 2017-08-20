@@ -23,7 +23,15 @@ class block_countdown extends block_base {
      */
     function get_content() {
         global $CFG;
-        
+
+	if (empty($this->content)) {
+            $this->content = new stdClass();
+        }
+	if (is_null($this->config)) {
+            $this->content->text = get_string('changesettings', 'block_countdown');
+            return $this->content;
+	}
+
         // Set title.
         if ($this->config->title) {
             $this->title = $this->config->title;

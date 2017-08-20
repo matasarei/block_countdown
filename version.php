@@ -8,7 +8,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */ 
 defined('MOODLE_INTERNAL') || die();
-$plugin->version   = 2017082000;        // The current plugin version (Date: YYYYMMDDXX)
+$plugin->version   = 2017082003;        // The current plugin version (Date: YYYYMMDDXX)
 $plugin->requires  = 2011051000;        // Requires this Moodle version
 $plugin->release   = '1.0';
 $plugin->maturity  = MATURITY_STABLE;
