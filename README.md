@@ -15,6 +15,7 @@ Powered by: http://hilios.github.io/jQuery.countdown/
 * Title;
 * Date and time;
 * Text after ended;
-* Costom css.
+* URL;
+* Custom css.
 
 ![screenshot 20](https://user-images.githubusercontent.com/6638367/29490912-0794362a-8554-11e7-8b8a-d4b15818d603.png)

@@ -1,3 +1,10 @@
+.block_countdown_timer,
+.countdown-ended {
+    font-size: 1.2em;
+    text-align: center;
+    display: block;
+}
+
 .countdown-daystext {
     font-size: 0.9em;
 }

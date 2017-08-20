@@ -32,23 +32,27 @@ class block_countdown extends block_base {
         $this->page->requires->jquery();
         $this->page->requires->js("/blocks/countdown/js/jquery.countdown.js");
         $this->page->requires->js("/blocks/countdown/js/start.js");
+        $tag = 'div';
+        $params = array();
+        if ($this->config->url) {
+            $params['href'] = $this->config->url;
+            $params['target'] = $this->config->urltarget;
+            $tag = 'a';
+        }
         
         if ($this->config->until > time()) {
-            $this->content->text = html_writer::tag('div', '', [
-                'id' => 'block_countdown_timer',
-                'data-daystext' => get_string('daystext', 'block_countdown'),
-                'data-datetime' => date('Y/m/d H:m:i', $this->config->until)
-            ]);
-        } else {
+            $params['class'] = 'block_countdown_timer';
+            $params['data-daystext'] = get_string('daystext', 'block_countdown');
+            $params['data-datetime'] = date('Y/m/d H:m:i', $this->config->until);
+            $this->content->text = html_writer::tag($tag, '', $params);
+        } else {    
             if ($this->config->ended_text) {
                 $endedtext = $this->config->ended_text;
             } else {
                 $endedtext = get_string('changesettings', 'block_countdown');
             }
-            
-            $this->content->text = html_writer::tag('dev', $endedtext, [
-                'class' => 'countdown-ended'
-            ]);
+            $params['class'] = 'countdown-ended';
+            $this->content->text = html_writer::tag($tag, $endedtext, $params);
         }
         return $this->content;
     }
