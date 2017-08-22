@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Countdown plugin
+ * Capabilities.
  * http://docs.moodle.org/dev/
  *
  * @package    block_countdown
@@ -23,10 +23,17 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die('Direct access to this script is forbidden.');
-
-$plugin->version   = 2017082202;        // The current plugin version (Date: YYYYMMDDXX)
-$plugin->requires  = 2011051000;        // Requires this Moodle version
-$plugin->release   = '1.0.3';
-$plugin->maturity  = MATURITY_STABLE;
-$plugin->component = 'block_countdown';
+defined('MOODLE_INTERNAL') || die();
+$capabilities = array(
+    // Whether or not the user can add the block.
+    'block/countdown:addinstance' => array(
+        'riskbitmask' => RISK_XSS,
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_SYSTEM,
+        'archetypes' => array(
+            'editingteacher' => CAP_ALLOW,
+            'manager' => CAP_ALLOW
+        ),
+        'clonepermissionsfrom' => 'moodle/site:manageblocks'
+    )
+);

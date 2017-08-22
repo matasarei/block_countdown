@@ -23,7 +23,6 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-//It must be included from a Moodle page.
 defined('MOODLE_INTERNAL') || die('Direct access to this script is forbidden.');
 
 class block_countdown_edit_form extends block_edit_form {
@@ -50,6 +49,10 @@ class block_countdown_edit_form extends block_edit_form {
         $mform->addElement('text', 'config_ended_text', get_string('countdown_ended_text', 'block_countdown'));
         $mform->setType('config_ended_text', PARAM_TEXT);
 
+        $mform->addElement('select', 'config_style', get_string('countdown_style', 'block_countdown'), [
+            block_countdown::STYLE_DEFAULT => get_string('countdown_style_default', 'block_countdown'),
+            block_countdown::STYLE_CORPORATE => get_string('countdown_style_corporate', 'block_countdown')
+        ]);
         $mform->addElement('textarea', 'config_css', get_string("css", "block_countdown"), array(
             'wrap' => "virtual",
             'rows' => "20",

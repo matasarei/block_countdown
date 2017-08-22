@@ -23,7 +23,6 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-//It must be included from a Moodle page.
 defined('MOODLE_INTERNAL') || die('Direct access to this script is forbidden.');
 
 class block_countdown extends block_base {
@@ -35,6 +34,9 @@ class block_countdown extends block_base {
     function init() {
         $this->title = get_string('pluginname','block_countdown');
     }
+    
+    const STYLE_DEFAULT = 'style-default';
+    const STYLE_CORPORATE = 'style-corporate';
 
     /**
      * Returns content of the block
@@ -68,7 +70,7 @@ class block_countdown extends block_base {
         }
 
         if ($this->config->until > time()) {
-            $params['class'] = 'block_countdown_timer';
+            $params['class'] = "block-countdown-timer {$this->config->style}";
             $params['data-daystext'] = get_string('daystext', 'block_countdown');
             $params['data-datetime'] = date('Y/m/d H:m:i', $this->config->until);
             $this->content->text = html_writer::tag($tag, '', $params);
@@ -80,6 +82,10 @@ class block_countdown extends block_base {
             }
             $params['class'] = 'countdown-ended';
             $this->content->text = html_writer::tag($tag, $endedtext, $params);
+        }
+        if ($this->config->css) {
+            $this->content->text = html_writer::tag('style', $this->config->css) 
+                                 . $this->content->text;
         }
         return $this->content;
     }

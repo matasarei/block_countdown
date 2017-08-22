@@ -34,3 +34,6 @@ $string['urltarget_blank'] = "Open linked document in a new tab";
 $string['daystext'] = "day(s)";
 $string['until'] = "Date and time";
 $string['css'] = "Custom CSS";
+$string['countdown_style'] = "Countdown style";
+$string['countdown_style_default'] = "Default style";
+$string['countdown_style_corporate'] = "Corporate style";

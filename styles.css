@@ -1,4 +1,4 @@
-.block_countdown_timer,
+.block-countdown-timer,
 .countdown-ended {
     font-size: 1.2em;
     text-align: center;
@@ -18,4 +18,14 @@
 
 .countdown-devider {
     padding: 0 2px;
+}
+
+.style-corporate .countdown-days,
+.style-corporate .countdown-hours,
+.style-corporate .countdown-minutes,
+.style-corporate .countdown-seconds {
+    background: #009688;
+    color: #fff;
+    padding: 3px;
+    border-radius: 4px;
 }

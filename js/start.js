@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var countdown = $('.block_countdown_timer');
+    var countdown = $('.block-countdown-timer');
     countdown.countdown(countdown.data('datetime'), function(event) {
         $(this).html(
             event.strftime(
