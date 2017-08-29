@@ -37,3 +37,4 @@ $string['css'] = "Custom CSS";
 $string['countdown_style'] = "Countdown style";
 $string['countdown_style_default'] = "Default style";
 $string['countdown_style_corporate'] = "Corporate style";
+$string['countdown:addinstance'] = 'Add a new block';

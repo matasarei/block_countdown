@@ -25,7 +25,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 $capabilities = array(
-    // Whether or not the user can add the block.
+    // Only teacher and manager can add the block.
     'block/countdown:addinstance' => array(
         'riskbitmask' => RISK_XSS,
         'captype' => 'write',
@@ -35,5 +35,19 @@ $capabilities = array(
             'manager' => CAP_ALLOW
         ),
         'clonepermissionsfrom' => 'moodle/site:manageblocks'
+    ),
+    // No one add the block on their dashboard.
+    'block/countdown:myaddinstance' => array(
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_SYSTEM,
+        'archetypes' => array()
+    ),
+    // Whether or not a user can see the block.
+    'block/countdown:view' => array(
+        'captype' => 'read',
+        'contextlevel' => CONTEXT_SYSTEM,
+        'archetypes' => array(
+            'user' => CAP_ALLOW
+        ),
     )
 );

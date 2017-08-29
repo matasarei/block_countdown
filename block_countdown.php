@@ -25,33 +25,42 @@
 
 defined('MOODLE_INTERNAL') || die('Direct access to this script is forbidden.');
 
+/**
+ * Defines block
+ */
 class block_countdown extends block_base {
 
     /**
      * Init function
      * @return void
      */
-    function init() {
+    public function init() {
         $this->title = get_string('pluginname','block_countdown');
     }
-    
+
+    /**
+     * Corporate style preset
+     */
     const STYLE_DEFAULT = 'style-default';
+    /**
+     * Corporate style preset
+     */
     const STYLE_CORPORATE = 'style-corporate';
 
     /**
      * Returns content of the block
      * @return string Content of the block
      */
-    function get_content() {
+    public function get_content() {
         global $CFG;
 
-	if (empty($this->content)) {
+        if (empty($this->content)) {
             $this->content = new stdClass();
         }
-	if (is_null($this->config)) {
+        if (is_null($this->config)) {
             $this->content->text = get_string('changesettings', 'block_countdown');
             return $this->content;
-	}
+        }
 
         // Set title.
         if ($this->config->title) {
@@ -84,7 +93,7 @@ class block_countdown extends block_base {
             $this->content->text = html_writer::tag($tag, $endedtext, $params);
         }
         if ($this->config->css) {
-            $this->content->text = html_writer::tag('style', $this->config->css) 
+            $this->content->text = html_writer::tag('style', $this->config->css)
                                  . $this->content->text;
         }
         return $this->content;

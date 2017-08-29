@@ -29,7 +29,7 @@ class block_countdown_edit_form extends block_edit_form {
 
     /**
      * Defines edit form
-     * @return void
+     * @param moodleform $mform
      */
     protected function specific_definition($mform) {
         $mform->addElement('header', 'configheader', get_string('blocksettings', 'block'));
