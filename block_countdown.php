@@ -68,7 +68,7 @@ class block_countdown extends block_base {
         }
 
         $this->page->requires->jquery();
-        $this->page->requires->js("/blocks/countdown/js/jquery.countdown.js");
+        $this->page->requires->js("/blocks/countdown/js/jquery.countdown.min.js");
         $this->page->requires->js("/blocks/countdown/js/start.js");
         $tag = 'div';
         $params = array();
