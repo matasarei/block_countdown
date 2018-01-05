@@ -68,7 +68,7 @@ class block_countdown extends block_base {
         }
 
         $this->page->requires->jquery();
-        $this->page->requires->js("/blocks/countdown/js/jquery.countdown.min.js");
+        $this->page->requires->js("/blocks/countdown/js/jquery.countdown.js");
         $this->page->requires->js("/blocks/countdown/js/start.js");
         $tag = 'div';
         $params = array();
@@ -81,7 +81,11 @@ class block_countdown extends block_base {
         if ($this->config->until > time()) {
             $params['class'] = "block-countdown-timer {$this->config->style}";
             $params['data-daystext'] = get_string('daystext', 'block_countdown');
-            $params['data-datetime'] = date('Y/m/d H:m:i', $this->config->until);
+            $params['data-year'] = date('Y', $this->config->until);
+            $params['data-month'] = date('m', $this->config->until);
+            $params['data-day'] = date('d', $this->config->until);
+            $params['data-hour'] = date('H', $this->config->until);
+            $params['data-minute'] = date('i', $this->config->until);
             $this->content->text = html_writer::tag($tag, '', $params);
         } else {
             if ($this->config->ended_text) {
