@@ -1,6 +1,15 @@
 $(document).ready(function() {
     var countdown = $('.block-countdown-timer');
-    countdown.countdown(countdown.data('datetime'), function(event) {
+    var time = Date.UTC(
+        countdown.data('year'),
+        countdown.data('month') - 1,
+        countdown.data('day'),
+        countdown.data('hour'),
+        countdown.data('minute')
+    );
+    var offset = (new Date().getTimezoneOffset() * 60) * 1000;
+    var date = new Date(time + offset);
+    countdown.countdown(date, function(event) {
         $(this).html(
             event.strftime(
                 '<span class="countdown-days">%-D</span> <span class="countdown-daystext">' +
