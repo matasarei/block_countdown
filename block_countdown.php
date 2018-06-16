@@ -32,6 +32,7 @@ class block_countdown extends block_base {
 
     /**
      * Init function
+     *
      * @return void
      */
     public function init() {
@@ -42,6 +43,7 @@ class block_countdown extends block_base {
      * Corporate style preset
      */
     const STYLE_DEFAULT = 'style-default';
+
     /**
      * Corporate style preset
      */
@@ -49,6 +51,7 @@ class block_countdown extends block_base {
 
     /**
      * Returns content of the block
+     *
      * @return string Content of the block
      */
     public function get_content() {
@@ -57,49 +60,57 @@ class block_countdown extends block_base {
         if (empty($this->content)) {
             $this->content = new stdClass();
         }
+
         if (is_null($this->config)) {
             $this->content->text = get_string('changesettings', 'block_countdown');
             return $this->content;
         }
 
-        // Set title.
         if ($this->config->title) {
             $this->title = $this->config->title;
         }
 
         $this->page->requires->jquery();
         $this->page->requires->js("/blocks/countdown/js/jquery.countdown.js");
+
         $this->page->requires->js("/blocks/countdown/js/start.js");
         $tag = 'div';
         $params = array();
+
         if ($this->config->url) {
             $params['href'] = $this->config->url;
             $params['target'] = $this->config->urltarget;
             $tag = 'a';
         }
 
+        $until = (new DateTime('now', core_date::get_user_timezone_object()))->setTimestamp($this->config->until);
+
         if ($this->config->until > time()) {
             $params['class'] = "block-countdown-timer {$this->config->style}";
             $params['data-daystext'] = get_string('daystext', 'block_countdown');
-            $params['data-year'] = date('Y', $this->config->until);
-            $params['data-month'] = date('m', $this->config->until);
-            $params['data-day'] = date('d', $this->config->until);
-            $params['data-hour'] = date('H', $this->config->until);
-            $params['data-minute'] = date('i', $this->config->until);
+            $params['data-year'] = $until->format('Y');
+            $params['data-month'] = $until->format('m');
+            $params['data-day'] = $until->format('d');
+            $params['data-hour'] = $until->format('H');
+            $params['data-minute'] = $until->format('i');
             $this->content->text = html_writer::tag($tag, '', $params);
         } else {
+
             if ($this->config->ended_text) {
                 $endedtext = $this->config->ended_text;
             } else {
                 $endedtext = get_string('changesettings', 'block_countdown');
             }
+
             $params['class'] = 'countdown-ended';
             $this->content->text = html_writer::tag($tag, $endedtext, $params);
         }
+
         if ($this->config->css) {
             $this->content->text = html_writer::tag('style', $this->config->css)
                                  . $this->content->text;
         }
+
         return $this->content;
     }
 

@@ -29,6 +29,7 @@ class block_countdown_edit_form extends block_edit_form {
 
     /**
      * Defines edit form
+     *
      * @param moodleform $mform
      */
     protected function specific_definition($mform) {
@@ -53,6 +54,7 @@ class block_countdown_edit_form extends block_edit_form {
             block_countdown::STYLE_DEFAULT => get_string('countdown_style_default', 'block_countdown'),
             block_countdown::STYLE_CORPORATE => get_string('countdown_style_corporate', 'block_countdown')
         ]);
+
         $mform->addElement('textarea', 'config_css', get_string("css", "block_countdown"), array(
             'wrap' => "virtual",
             'rows' => "20",
