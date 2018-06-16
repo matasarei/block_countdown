@@ -3,7 +3,7 @@ Yevhen Matasar (matasar.ei@gmail.com)
 
 Powered by: http://hilios.github.io/jQuery.countdown/
 ## Installation
-* Copy files to /blocks/countdown/;
+* Copy files to <moodle_dir>/blocks/countdown/;
 * Add plugin to sidebar;
 * Set date and time, title and custom CSS (optional);
 * Enjoy.
