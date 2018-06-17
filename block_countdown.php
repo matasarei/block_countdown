@@ -14,29 +14,25 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+defined('MOODLE_INTERNAL') || die('Direct access to this script is forbidden.');
+
 /**
  * Countdown plugin
- * http://docs.moodle.org/dev/
  *
  * @package    block_countdown
  * @copyright  Yevhen Matasar <matasar.ei@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
-defined('MOODLE_INTERNAL') || die('Direct access to this script is forbidden.');
-
-/**
- * Defines block
- */
-class block_countdown extends block_base {
-
+class block_countdown extends block_base
+{
     /**
      * Init function
      *
      * @return void
      */
-    public function init() {
-        $this->title = get_string('pluginname','block_countdown');
+    public function init()
+    {
+        $this->title = get_string('pluginname', 'block_countdown');
     }
 
     /**
@@ -54,9 +50,8 @@ class block_countdown extends block_base {
      *
      * @return string Content of the block
      */
-    public function get_content() {
-        global $CFG;
-
+    public function get_content()
+    {
         if (empty($this->content)) {
             $this->content = new stdClass();
         }
@@ -86,7 +81,9 @@ class block_countdown extends block_base {
         if ($this->config->until > time()) {
             $params['class'] = "block-countdown-timer {$this->config->style}";
             $params['data-daystext'] = get_string('daystext', 'block_countdown');
-            $params = array_merge($params, $this->getFinalDateAttr($this->config->until));
+
+            $until = (new DateTime('now', new DateTimeZone(usertimezone())))->setTimestamp($this->config->until);
+            $params['data-datetime'] = $until->format(DATE_ATOM);
 
             $this->content->text = html_writer::tag($tag, '', $params);
         } else {
@@ -103,40 +100,9 @@ class block_countdown extends block_base {
 
         if ($this->config->css) {
             $this->content->text = html_writer::tag('style', $this->config->css)
-                                 . $this->content->text;
+                . $this->content->text;
         }
 
         return $this->content;
-    }
-
-    /**
-     * Returns data attributes for timer
-     *
-     * @return array
-     */
-    private function getFinalDateAttr($timestamp) {
-        global $CFG;
-
-        if ($CFG->version <= 2015111610) { // Older versions.
-            $until = usergetdate($timestamp);
-
-            return [
-                'data-year'   => $until['year'],
-                'data-month'  => $until['mon'],
-                'data-day'    => $until['mday'],
-                'data-hour'   => $until['hours'],
-                'data-minute' => $until['minutes']
-            ];
-        }
-
-        $until = (new DateTime('now', core_date::get_user_timezone_object()))->setTimestamp($timestamp);
-
-        return [
-            'data-year'   => $until->format('Y'),
-            'data-month'  => $until->format('m'),
-            'data-day'    => $until->format('d'),
-            'data-hour'   => $until->format('H'),
-            'data-minute' => $until->format('i')
-        ];
     }
 }

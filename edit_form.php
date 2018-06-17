@@ -14,6 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+defined('MOODLE_INTERNAL') || die('Direct access to this script is forbidden.');
+
 /**
  * Edit form
  * http://docs.moodle.org/dev/
@@ -22,17 +24,15 @@
  * @copyright  Yevhen Matasar <matasar.ei@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
-defined('MOODLE_INTERNAL') || die('Direct access to this script is forbidden.');
-
-class block_countdown_edit_form extends block_edit_form {
-
+class block_countdown_edit_form extends block_edit_form
+{
     /**
      * Defines edit form
      *
      * @param moodleform $mform
      */
-    protected function specific_definition($mform) {
+    protected function specific_definition($mform)
+    {
         $mform->addElement('header', 'configheader', get_string('blocksettings', 'block'));
 
         $mform->addElement('text', 'config_title', get_string('countdown_title', 'block_countdown'));
@@ -55,10 +55,10 @@ class block_countdown_edit_form extends block_edit_form {
             block_countdown::STYLE_CORPORATE => get_string('countdown_style_corporate', 'block_countdown')
         ]);
 
-        $mform->addElement('textarea', 'config_css', get_string("css", "block_countdown"), array(
+        $mform->addElement('textarea', 'config_css', get_string("css", "block_countdown"), [
             'wrap' => "virtual",
             'rows' => "20",
             'cols' => "70"
-        ));
+        ]);
     }
 }
