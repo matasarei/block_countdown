@@ -83,16 +83,11 @@ class block_countdown extends block_base {
             $tag = 'a';
         }
 
-        $until = (new DateTime('now', core_date::get_user_timezone_object()))->setTimestamp($this->config->until);
-
         if ($this->config->until > time()) {
             $params['class'] = "block-countdown-timer {$this->config->style}";
             $params['data-daystext'] = get_string('daystext', 'block_countdown');
-            $params['data-year'] = $until->format('Y');
-            $params['data-month'] = $until->format('m');
-            $params['data-day'] = $until->format('d');
-            $params['data-hour'] = $until->format('H');
-            $params['data-minute'] = $until->format('i');
+            $params = array_merge($params, $this->getFinalDateAttr($this->config->until));
+
             $this->content->text = html_writer::tag($tag, '', $params);
         } else {
 
@@ -114,4 +109,34 @@ class block_countdown extends block_base {
         return $this->content;
     }
 
+    /**
+     * Returns data attributes for timer
+     *
+     * @return array
+     */
+    private function getFinalDateAttr($timestamp) {
+        global $CFG;
+
+        if ($CFG->version <= 2015111610) { // Older versions.
+            $until = usergetdate($timestamp);
+
+            return [
+                'data-year'   => $until['year'],
+                'data-month'  => $until['mon'],
+                'data-day'    => $until['mday'],
+                'data-hour'   => $until['hours'],
+                'data-minute' => $until['minutes']
+            ];
+        }
+
+        $until = (new DateTime('now', core_date::get_user_timezone_object()))->setTimestamp($timestamp);
+
+        return [
+            'data-year'   => $until->format('Y'),
+            'data-month'  => $until->format('m'),
+            'data-day'    => $until->format('d'),
+            'data-hour'   => $until->format('H'),
+            'data-minute' => $until->format('i')
+        ];
+    }
 }
