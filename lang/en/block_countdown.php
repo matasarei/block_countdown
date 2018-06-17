@@ -15,8 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Language strings
- * http://docs.moodle.org/dev/
+ * Defines English strings.
  *
  * @package    block_countdown
  * @copyright  Yevhen Matasar <matasar.ei@gmail.com>

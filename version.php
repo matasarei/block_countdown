@@ -15,8 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Countdown plugin
- * http://docs.moodle.org/dev/
+ * The Final countdown plugin / block
  *
  * @package    block_countdown
  * @copyright  Yevhen Matasar <matasar.ei@gmail.com>
@@ -25,7 +24,7 @@
 
 defined('MOODLE_INTERNAL') || die('Direct access to this script is forbidden.');
 
-$plugin->version   = 2018061701; // The current plugin version (Date: YYYYMMDDXX).
+$plugin->version   = 2018061800; // The current plugin version (Date: YYYYMMDDXX).
 $plugin->requires  = 2013111800; // Requires this Moodle version.
 $plugin->release   = '1.1.0';
 $plugin->maturity  = MATURITY_STABLE;

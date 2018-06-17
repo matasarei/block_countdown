@@ -15,8 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Capabilities.
- * http://docs.moodle.org/dev/
+ * Capability definitions.
  *
  * @package    block_countdown
  * @copyright  Yevhen Matasar <matasar.ei@gmail.com>
@@ -24,30 +23,31 @@
  */
 
 defined('MOODLE_INTERNAL') || die();
-$capabilities = array(
+
+$capabilities = [
     // Only teacher and manager can add the block.
-    'block/countdown:addinstance' => array(
+    'block/countdown:addinstance' => [
         'riskbitmask' => RISK_XSS,
         'captype' => 'write',
         'contextlevel' => CONTEXT_SYSTEM,
-        'archetypes' => array(
+        'archetypes' => [
             'editingteacher' => CAP_ALLOW,
             'manager' => CAP_ALLOW
-        ),
+        ],
         'clonepermissionsfrom' => 'moodle/site:manageblocks'
-    ),
+    ],
     // No one add the block on their dashboard.
-    'block/countdown:myaddinstance' => array(
+    'block/countdown:myaddinstance' => [
         'captype' => 'write',
         'contextlevel' => CONTEXT_SYSTEM,
-        'archetypes' => array()
-    ),
+        'archetypes' => []
+    ],
     // Whether or not a user can see the block.
-    'block/countdown:view' => array(
+    'block/countdown:view' => [
         'captype' => 'read',
         'contextlevel' => CONTEXT_SYSTEM,
-        'archetypes' => array(
+        'archetypes' => [
             'user' => CAP_ALLOW
-        ),
-    )
-);
+        ],
+    ]
+];
