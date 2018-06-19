@@ -82,8 +82,12 @@ class block_countdown extends block_base
             $params['class'] = "block-countdown-timer {$this->config->style}";
             $params['data-daystext'] = get_string('daystext', 'block_countdown');
 
-            $until = (new DateTime('now', new DateTimeZone(usertimezone())))->setTimestamp($this->config->until);
-            $params['data-datetime'] = $until->format(DATE_ATOM);
+            try {
+                $until = $this->getDateTime()->setTimestamp($this->config->until);
+                $params['data-datetime'] = $until->format(DATE_ATOM);
+            } catch (\Exception $ex) {
+                $params['data-datetime'] = date(DATE_ATOM, $this->config->until);
+            }
 
             $this->content->text = html_writer::tag($tag, '', $params);
         } else {
@@ -104,5 +108,19 @@ class block_countdown extends block_base
         }
 
         return $this->content;
+    }
+
+    /**
+     * @return DateTime
+     */
+    private function getDateTime()
+    {
+        global $CFG;
+
+        if ($CFG->version <= 2016052300) { // older versions (<= 3.1)
+            return new DateTime('now', new DateTimeZone(get_user_timezone()));
+        }
+
+        return new DateTime('now', core_date::get_user_timezone_object());
     }
 }
