@@ -82,7 +82,7 @@ class block_countdown extends block_base
             $params['class'] = "block-countdown-timer {$this->config->style}";
             $params['data-daystext'] = get_string('daystext', 'block_countdown');
 
-            try {//
+            try {
                 $until = $this->getDateTime()->setTimestamp($this->config->until);
                 $params['data-datetime'] = $until->format(DATE_ATOM);
             } catch (\Exception $ex) {
