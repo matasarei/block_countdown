@@ -26,16 +26,6 @@ defined('MOODLE_INTERNAL') || die('Direct access to this script is forbidden.');
 class block_countdown extends block_base
 {
     /**
-     * Init function
-     *
-     * @return void
-     */
-    public function init()
-    {
-        $this->title = get_string('pluginname', 'block_countdown');
-    }
-
-    /**
      * Corporate style preset
      */
     const STYLE_DEFAULT = 'style-default';
@@ -46,18 +36,31 @@ class block_countdown extends block_base
     const STYLE_CORPORATE = 'style-corporate';
 
     /**
+     * Init function
+     *
+     * @return void
+     */
+    public function init()
+    {
+        $this->title = get_string('pluginname', 'block_countdown');
+    }
+
+    /**
      * Returns content of the block
      *
      * @return string Content of the block
      */
     public function get_content()
     {
-        if (empty($this->content)) {
-            $this->content = new stdClass();
+        if (!empty($this->content)) {
+            return $this->content;
         }
+
+        $this->content = new stdClass();
 
         if (is_null($this->config)) {
             $this->content->text = get_string('changesettings', 'block_countdown');
+
             return $this->content;
         }
 
@@ -67,10 +70,10 @@ class block_countdown extends block_base
 
         $this->page->requires->jquery();
         $this->page->requires->js("/blocks/countdown/js/jquery.countdown.js");
-
         $this->page->requires->js("/blocks/countdown/js/start.js");
+
         $tag = 'div';
-        $params = array();
+        $params = [];
 
         if ($this->config->url) {
             $params['href'] = $this->config->url;
@@ -91,7 +94,6 @@ class block_countdown extends block_base
 
             $this->content->text = html_writer::tag($tag, '', $params);
         } else {
-
             if ($this->config->ended_text) {
                 $endedtext = $this->config->ended_text;
             } else {
@@ -103,8 +105,7 @@ class block_countdown extends block_base
         }
 
         if ($this->config->css) {
-            $this->content->text = html_writer::tag('style', $this->config->css)
-                . $this->content->text;
+            $this->content->text = html_writer::tag('style', $this->config->css) . $this->content->text;
         }
 
         return $this->content;
@@ -117,7 +118,7 @@ class block_countdown extends block_base
     {
         global $CFG;
 
-        if ($CFG->version <= 2016052300) { // older versions (<= 3.1)
+        if ($CFG->version <= 2016052300) { // older versions (<= 3.1).
             return new DateTime('now', new DateTimeZone(get_user_timezone()));
         }
 

@@ -41,13 +41,5 @@ $capabilities = [
         'captype' => 'write',
         'contextlevel' => CONTEXT_SYSTEM,
         'archetypes' => []
-    ],
-    // Whether or not a user can see the block.
-    'block/countdown:view' => [
-        'captype' => 'read',
-        'contextlevel' => CONTEXT_SYSTEM,
-        'archetypes' => [
-            'user' => CAP_ALLOW
-        ],
     ]
 ];

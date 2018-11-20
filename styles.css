@@ -1,31 +1,39 @@
-.block-countdown-timer,
-.countdown-ended {
+.block_countdown .block-countdown-timer,
+.block_countdown .countdown-ended {
     font-size: 1.2em;
     text-align: center;
     display: block;
 }
 
-.countdown-daystext {
+.block_countdown .countdown-daystext {
     font-size: 0.9em;
 }
 
-.countdown-days,
-.countdown-hours,
-.countdown-minutes,
-.countdown-seconds {
+.block_countdown .countdown-days,
+.block_countdown .countdown-hours,
+.block_countdown .countdown-minutes,
+.block_countdown .countdown-seconds {
     font-size: 1.2em;
 }
 
-.countdown-devider {
+.block_countdown .countdown-separator {
     padding: 0 2px;
 }
 
-.style-corporate .countdown-days,
-.style-corporate .countdown-hours,
-.style-corporate .countdown-minutes,
-.style-corporate .countdown-seconds {
+.block_countdown .style-corporate .countdown-days,
+.block_countdown .style-corporate .countdown-hours,
+.block_countdown .style-corporate .countdown-minutes,
+.block_countdown .style-corporate .countdown-seconds {
     background: #009688;
     color: #fff;
     padding: 3px;
     border-radius: 4px;
+}
+.block_countdown .style-corporate .countdown-daystext {
+    padding-left: 5px;
+    color: #009688;
+    font-weight: bolder;
+}
+.block_countdown .style-corporate .countdown-separator {
+    font-size: 1.2em;
 }
