@@ -22,18 +22,20 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['pluginname'] = "Final countdown";
-$string['countdown_title'] = "Countdown title";
-$string['countdown_ended_text'] = "Text after countdown ended";
-$string['changesettings'] = "Please set date and time";
-$string['countdown_url'] = "URL";
-$string['countdown_urltarget'] = "Target";
-$string['urltarget_self'] = "Open linked document in the same tab";
-$string['urltarget_blank'] = "Open linked document in a new tab";
-$string['daystext'] = "day(s)";
-$string['until'] = "Date and time";
-$string['css'] = "Custom CSS";
-$string['countdown_style'] = "Countdown style";
-$string['countdown_style_default'] = "Default style";
-$string['countdown_style_corporate'] = "Corporate style";
-$string['countdown:addinstance'] = 'Add a new block';
+$string['pluginname'] = 'Final countdown';
+$string['countdown_title'] = 'Countdown title';
+$string['countdown_ended_text'] = 'Text after countdown ended';
+$string['changesettings'] = 'Please set date and time';
+$string['countdown_url'] = 'URL';
+$string['countdown_urltarget'] = 'Target';
+$string['urltarget_self'] = 'Open linked document in the same tab';
+$string['urltarget_blank'] = 'Open linked document in a new tab';
+$string['daystext'] = 'day(s)';
+$string['until'] = 'Date and time';
+$string['css'] = 'Custom CSS';
+$string['countdown_style'] = 'Countdown style';
+$string['countdown_style_default'] = 'Default style';
+$string['countdown_style_corporate'] = 'Corporate style';
+$string['countdown:addinstance'] = 'Add a new countdown block';
+$string['countdown:myaddinstance'] = 'Add a new countdown block to dashboard';
+$string['privacy:metadata'] = 'The Final countdown block only displays countdown timer.';
