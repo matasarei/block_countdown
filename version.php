@@ -24,8 +24,8 @@
 
 defined('MOODLE_INTERNAL') || die('Direct access to this script is forbidden.');
 
-$plugin->version   = 2018112101; // The current plugin version (Date: YYYYMMDDXX).
+$plugin->version   = 2019041400; // The current plugin version (Date: YYYYMMDDXX).
 $plugin->requires  = 2013111800; // Requires this Moodle version.
-$plugin->release   = '1.2.2';
+$plugin->release   = '1.3.0';
 $plugin->maturity  = MATURITY_STABLE;
 $plugin->component = 'block_countdown';
