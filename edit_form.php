@@ -29,7 +29,9 @@ class block_countdown_edit_form extends block_edit_form
     /**
      * Defines edit form
      *
-     * @param moodleform $mform
+     * @param MoodleQuickForm $mform
+     *
+     * @throws coding_exception
      */
     protected function specific_definition($mform)
     {

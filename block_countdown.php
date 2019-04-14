@@ -36,9 +36,7 @@ class block_countdown extends block_base
     const STYLE_CORPORATE = 'style-corporate';
 
     /**
-     * Init function
-     *
-     * @return void
+     * @throws coding_exception
      */
     public function init()
     {
@@ -46,9 +44,17 @@ class block_countdown extends block_base
     }
 
     /**
-     * Returns content of the block
+     * @return bool
+     */
+    function instance_allow_multiple()
+    {
+        return true;
+    }
+
+    /**
+     * @return stdClass
      *
-     * @return string Content of the block
+     * @throws coding_exception
      */
     public function get_content()
     {
@@ -84,9 +90,10 @@ class block_countdown extends block_base
         if ($this->config->until > time()) {
             $params['class'] = "block-countdown-timer {$this->config->style}";
             $params['data-daystext'] = get_string('daystext', 'block_countdown');
+            $params['data-endedtext'] = $this->config->ended_text;
 
             try {
-                $until = $this->getDateTime()->setTimestamp($this->config->until);
+                $until = (new DateTime())->setTimestamp($this->config->until);
                 $params['data-datetime'] = $until->format(DATE_ATOM);
             } catch (\Exception $ex) {
                 $params['data-datetime'] = date(DATE_ATOM, $this->config->until);
@@ -109,19 +116,5 @@ class block_countdown extends block_base
         }
 
         return $this->content;
-    }
-
-    /**
-     * @return DateTime
-     */
-    private function getDateTime()
-    {
-        global $CFG;
-
-        if ($CFG->version <= 2016052300) { // older versions (<= 3.1).
-            return new DateTime('now', new DateTimeZone(get_user_timezone()));
-        }
-
-        return new DateTime('now', core_date::get_user_timezone_object());
     }
 }
