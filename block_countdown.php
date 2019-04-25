@@ -52,7 +52,7 @@ class block_countdown extends block_base
     }
 
     /**
-     * @return stdClass
+     * @return string Content of the block
      *
      * @throws coding_exception
      */
@@ -93,7 +93,8 @@ class block_countdown extends block_base
             $params['data-endedtext'] = $this->config->ended_text;
 
             try {
-                $until = (new DateTime())->setTimestamp($this->config->until);
+                $until = new DateTime();
+                $until->setTimestamp($this->config->until);
                 $params['data-datetime'] = $until->format(DATE_ATOM);
             } catch (\Exception $ex) {
                 $params['data-datetime'] = date(DATE_ATOM, $this->config->until);
